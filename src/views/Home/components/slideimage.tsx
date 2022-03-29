@@ -5,6 +5,8 @@ import styled from 'styled-components'
 export interface FarmsProps {
   tokenMode?: boolean
 }
+const Slid = styled.div`
+`
 
 const SlideImage: React.FC<FarmsProps> = (farmsProps) => {
   
@@ -67,25 +69,23 @@ const SlideImage: React.FC<FarmsProps> = (farmsProps) => {
   return (
     <>
         
-      
-    <div className="grid  grid-cols-1 gap-20">
+      <Slid>
     <Slider  {...sliderSettings}>
           
-          <div className='gap-20'>
-            <img src="/images/3.png" className=" rounded-2xl " width='350' alt='1' />
+          <div className='ml-10 '>
+            <img src="/images/slider1.png" className=" rounded-2xl " width='350' alt='1' />
           </div>
-          <div>
-            <img src="/images/2.png" className=" rounded-2xl " width='350' alt='1' />
+          <div className='ml-10 '>
+            <img src="/images/slider2.png" className=" rounded-2xl " width='350' alt='1' />
           </div>
-          <div>
-            <img src="/images/1.png" className=" rounded-2xl"  width='350' alt='1' />
+          <div className='ml-10 '>
+            <img src="/images/slider3.png" className=" rounded-2xl"  width='350' alt='1' />
           </div>
           
          
 
     </Slider>
-
-    </div>
+    </Slid>
 
     
 

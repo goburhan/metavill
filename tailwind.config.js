@@ -23,6 +23,8 @@ module.exports = {
       colors: {
         primary: '#3B3172',
         secondary: '#3B3172',
+        calloption: '#96906f',
+        meta: '#8d694a'
       },
     },
   },

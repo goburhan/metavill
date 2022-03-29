@@ -4,7 +4,7 @@ import Socials from 'components/Partials/Socials'
 import Divider from 'views/Farms/components/Divider'
 import TopSocials from 'components/Partials/TopSocial'
 import FarmStakingCard from './components/FarmStakingCard'
-import TopSliderCard from './components/TopSliderCard'
+import Enterance from './components/Enterance'
 import CakeStats from './components/CakeStats'
 import TopFarms from './components/TopFarms'
 import Announcements from './components/Announcements'
@@ -16,8 +16,9 @@ import Benefits from './components/Benefits'
 import Partners from './components/Partners'
 import Sitestat from './components/Sitestat'
 import SlideImage from './components/slideimage'
-import Farmlist from './components/Farmlist'
+import News from './components/News'
 import LaunchPools from './components/LaunchPools'
+import Features from './components/Features'
 
 const Home: React.FC = () => {
   return (
@@ -25,40 +26,41 @@ const Home: React.FC = () => {
       <div>
         <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-12 gap-8">
           
-        <div className="col-span-12 ">
-            <TopSocials />
+        
+          <div className="col-span-12 sm:col-span-12 md:col-span-12 lg:col-span-12 mb-40">
+            <Enterance />
           </div>
-          <div className="col-span-12 sm:col-span-12 md:col-span-12 lg:col-span-6">
-            <TopSliderCard />
-          </div>
-          <div className="col-span-12  sm:col-span-12 md:col-span-12 lg:col-span-6">
-            <CakeStats />
-          </div>
+        
           
-          <div className="col-span-12  mb-20">
+          <div className="col-span-12  mt-32">
             <SlideImage />
           </div>
-          <div className="col-span-12 sm:col-span-12 md:col-span-12 lg:col-span-6">
-            <Farmlist />
+          
+         
+          <div className="col-span-12 sm:col-span-12 md:col-span-12 lg:col-span-6 mt-20">
+            <News />
           </div>
-          <div className="col-span-12 sm:col-span-12 md:col-span-12 lg:col-span-6">
+          <div className="col-span-12 sm:col-span-12 md:col-span-12 lg:col-span-6 mt-20">
             <Announcements />
           </div>
           
-          <div className="col-span-12  sm:col-span-12 md:col-span-12 lg:col-span-8 lg:col-start-3">
-            <FarmStakingCard />
+          <div className="col-span-12 sm:col-span-12 md:col-span-12 lg:col-span-12 mt-20">
+            <Features />
           </div>
-          <div className="col-span-12 mb-10 mt-10 col-start-0">
-            <Benefits />
+          <div className="col-span-12 sm:col-span-12 md:col-span-12 lg:col-span-12 mt-20">
+            <Partners />
           </div>
+          
+          <div className="col-span-12 sm:col-span-12 md:col-span-12 lg:col-span-12 mt-20">
+            <Sitestat />
+          </div>
+        
           
           <div className="col-span-12  col-start-0">
           <Divider />
           </div>
           
-          <div className="col-span-12 mb-16 col-start-0">
-            <Partners />
-          </div>
+       
          
         </div>
       </div>

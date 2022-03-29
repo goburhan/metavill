@@ -35,11 +35,11 @@ const config: MenuEntry[] = [
     icon: 'GooseIcon',
     href: '/ifo',
   },
-  {
-    label: 'Bridge',
-    icon: 'PoolIcon',
-     href:'https://bridge.robiniaswap.com/'
-  },
+  // {
+  //   label: 'Bridge',
+  //   icon: 'PoolIcon',
+  //    href:'https://bridge.robiniaswap.com/'
+  // },
   {
     label: "Partner's Defi ",
     icon: 'TicketIcon',

@@ -16,7 +16,7 @@ const TokenInput: React.FC<TokenInputProps> = ({ max, symbol, onChange, onSelect
   const TranslateString = useI18n()
   return (
     <StyledTokenInput>
-      <StyledMaxText>
+      <StyledMaxText >
         {max.toLocaleString()} {symbol} {TranslateString(526, 'Available')}
       </StyledMaxText>
       <Input
@@ -58,7 +58,7 @@ const StyledTokenAdornmentWrapper = styled.div`
 
 const StyledMaxText = styled.div`
   align-items: center;
-  color: ${(props) => props.theme.colors.primary};
+  color: #ffff;
   display: flex;
   font-size: 14px;
   font-weight: 700;

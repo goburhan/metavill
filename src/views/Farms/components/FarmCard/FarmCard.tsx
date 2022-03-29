@@ -60,7 +60,7 @@ const StyledCardAccent = styled.div`
 const FCard = styled.div`
   align-self: baseline;
   margin-top:70px;
-  background-color:rgba(212, 211, 255, 0.28);
+  background-color:#e0d9b8;
   border: 1px navy solid; 
   outline: 1px navy solid;  
   outline-offset: -12px;  

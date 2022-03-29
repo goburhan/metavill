@@ -23,14 +23,14 @@ const Socials = () => {
     </span>
     </button>
     <div className="dropdown-content absolute hidden text-gray-700 pt-1">
-      <a className="rounded-t bg-purple-300 hover:bg-purple-600 py-2 px-4 block whitespace-no-wrap" href="https://t.me/robiniakr">
+      <a className="rounded-t bg-gray-300 hover:bg-gray-200 py-2 px-4 block whitespace-no-wrap" href="https://t.me/robiniakr">
       <div className='grid grid-cols-2 place-items-center gap-6'>
       <img src="/images/korea.svg" alt="koreanflag" style={{minWidth:20}}/>
       KR
       </div>
       
         </a>
-      <a className="bg-purple-300 hover:bg-purple-600 py-2 px-4 block whitespace-no-wrap" href="https://t.me/officialrobinia">
+      <a className="bg-gray-300 hover:bg-gray-200 py-2 px-4 block whitespace-no-wrap" href="https://t.me/officialrobinia">
       <div className='grid grid-cols-2 place-items-center gap-6'>
       <img src="/images/usa.png" alt="usaflag" style={{minWidth:20}}/>
       EN

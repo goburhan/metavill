@@ -1,84 +1,301 @@
-import React, { useState, useCallback } from 'react'
+import React from 'react'
+import CardValue from 'views/Home/components/CardValue'
+import { getBalanceNumber } from 'utils/formatBalance'
 import styled from 'styled-components'
-import { Heading, Card, CardBody, Button } from '@macist-m/robinia-uikit'
-import { useWallet } from '@binance-chain/bsc-use-wallet'
-import BigNumber from 'bignumber.js'
-import useI18n from 'hooks/useI18n'
-import { useAllHarvest } from 'hooks/useHarvest'
-import useFarmsWithBalance from 'hooks/useFarmsWithBalance'
-import UnlockButton from 'components/UnlockButton'
-import CakeHarvestBalance from './CakeHarvestBalance'
-import CakeWalletBalance from './CakeWalletBalance'
-import { usePriceCakeBusd } from '../../../state/hooks'
-import useTokenBalance from '../../../hooks/useTokenBalance'
-import { getCakeAddress } from '../../../utils/addressHelpers'
-import useAllEarnings from '../../../hooks/useAllEarnings'
-import { getBalanceNumber } from '../../../utils/formatBalance'
+import BigNumber from 'bignumber.js/bignumber'
+import {
+  useTotalSupply,
+  useBurnedBalance,
+  useCustomTokenBalance,
+} from 'hooks/useTokenBalance'
+import { BLOCKS_PER_YEAR } from 'config'
+import { getCakeAddress } from 'utils/addressHelpers'
+import { QuoteToken } from 'config/constants/types'
 
-const StyledFarmStakingCard = styled(Card)`
-  background-image: url('/images/egg/2a.png');
-  background-repeat: no-repeat;
-  background-position: top right;
-  min-height: 376px;
+import {
+  useFarms,
+  usePriceCakeBusd,
+  useTotalValue,
+  usePriceBnbBusd,
+} from '../../../state/hooks'
+
+declare global {
+  interface Window {
+    ethereum: any
+  }
+}
+const addToMetamask = function () {
+  window.ethereum
+    .request({
+      method: 'wallet_watchAsset',
+      params: {
+        type: 'ERC20',
+        options: {
+          address: '0xaAdFf17d56d80312b392Ced903f3E8dBE5c3ece7',
+          symbol: 'WST',
+          decimals: 18,
+          image: `${window.location.origin}/images/favicons/apple-icon-72x72.png`,
+        },
+      },
+    })
+    .then((success) => {
+      if (success) {
+        console.log('WST successfully added to wallet!')
+      } else {
+        throw new Error('Something went wrong.')
+      }
+    })
+    .catch(console.error)
+}
+const Statistics = () => {
+  const cakePriceUsd = usePriceCakeBusd()
+  // const totalValue = useTotalValue()
+  const totalSupply = useTotalSupply()
+  const burnedBalance = useBurnedBalance(getCakeAddress())
+  const farms = useFarms()
+  const eggPrice = usePriceCakeBusd()
+  const bnbPrice = usePriceBnbBusd()
+  const exacutedBalance = useCustomTokenBalance(
+    '0xaAdFf17d56d80312b392Ced903f3E8dBE5c3ece7',
+    '0xf808b408e464FcaA2a28C673ca7F5C16f6e775aB',
+  )
+  const circSupply = totalSupply
+    ? totalSupply.minus(burnedBalance).minus(exacutedBalance)
+    : new BigNumber(0)
+  const cakeSupply = getBalanceNumber(circSupply)
+
+  const marketCap = eggPrice.times(circSupply)
+
+  let eggPerBlock = 0
+  if (farms && farms[0] && farms[0].eggPerBlock) {
+    eggPerBlock = new BigNumber(farms[0].eggPerBlock)
+      .div(new BigNumber(10).pow(18))
+      .toNumber()
+  }
+  const x = []
+  farms.map((farm) => {
+    // if (!farm.tokenAmount || !farm.lpTotalInQuoteToken || !farm.lpTotalInQuoteToken) {
+    //   return farm
+    // }
+    const cakeRewardPerBlock = new BigNumber(farm.eggPerBlock || 1)
+      .times(new BigNumber(farm.poolWeight))
+      .div(new BigNumber(10).pow(18))
+    const cakeRewardPerYear = cakeRewardPerBlock.times(BLOCKS_PER_YEAR)
+
+    let apy = eggPrice.times(cakeRewardPerYear)
+
+    let totalValuex = new BigNumber(farm.lpTotalInQuoteToken || 0)
+
+    if (farm.quoteTokenSymbol === QuoteToken.BNB) {
+      totalValuex = totalValuex.times(bnbPrice)
+    }
+
+    if (totalValuex.comparedTo(0) > 0) {
+      apy = apy.div(totalValuex)
+    }
+
+    x.push(apy)
+    return null
+  })
+  const topAPY = x.reduce(function (accumulatedValue, currentValue) {
+    return Math.max(accumulatedValue, currentValue)
+  })
+  const Container = styled.div`
+  `
+
+  const Flex = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+    text-align: left;
+    margin-top: 40px;
+    img{
+      margin-bottom:30px;
+    }
+
+  ` 
+  const Text = styled.div`
+  margin-right: ${(props) => props.property };
+    color:#8d694a;
+    font-size:18px;
+    line-height:1.5;
+  `
+  const Stats = styled.div`
+  justify-content:space-evenly;
+  background-color:#f7f3e4;
+  border:solid 1px transparent;
+  border-radius:25px;
+  height:150px;
+  display: flex;
+  flex-wrap: wrap;
+  text-align: left;
+  margin-top: 40px;
 `
 
-const Block = styled.div`
-  margin-bottom: 16px;
-`
-
-const CardImage = styled.img`
-  margin-bottom: 16px;
-`
-
-const Label = styled.div`
-  color: ${({ theme }) => theme.colors.textSubtle};
-  font-size: 14px;
-`
-
-const Actions = styled.div`
-  margin-top: 24px;
-`
-
-const Sitestat = () => {
-  const [pendingTx, setPendingTx] = useState(false)
-  const { account } = useWallet()
-  const TranslateString = useI18n()
-  const farmsWithBalance = useFarmsWithBalance()
-  const cakeBalance = getBalanceNumber(useTokenBalance(getCakeAddress()))
-  const eggPrice = usePriceCakeBusd().toNumber()
-  const allEarnings = useAllEarnings()
-  const earningsSum = allEarnings.reduce((accum, earning) => {
-    return accum + new BigNumber(earning).div(new BigNumber(10).pow(18)).toNumber()
-  }, 0)
-  const balancesWithValue = farmsWithBalance.filter((balanceType) => balanceType.balance.toNumber() > 0)
-
-  
   return (
-    <div className="stat-card h-full place-items-center text-white text-center grid grid-cols-4 gap-4 justify-item-center ">
+    <>
+    <Stats>
+      <Flex>
+        <Container>
+          <Text property='20px'>SWT APY</Text>
+          <Text >Total Supply</Text>
+          <Text >Circulating Supply</Text>
+        </Container>
 
-      <div className="justify-item-center">
-      <img src="/images/stat1.svg"  alt="rbs-ico"  />
+        <Container>
+        <CardValue fontSize="18px" value={2} decimals={0} />
+        {cakeSupply && (
+                <CardValue
+                  fontSize="18px"
+                  value={getBalanceNumber(totalSupply)}
+                  decimals={0}
+                />
+              )}
+           {cakeSupply && (
+                <CardValue fontSize="18px" value={cakeSupply} decimals={0} />
+              )}
+        </Container>
+
+      </Flex>
+      <Flex>
+        <Container>
+          <Text >Total Burned</Text>
+          <Text >Market Cap</Text>
+          <Text >WST Per Block</Text>
+        </Container>
+
+        <Container  >
+        <CardValue fontSize="18px" value={2} decimals={0}  />
+        {cakeSupply && (
+                <CardValue
+                  fontSize="18px"
+                  value={getBalanceNumber(totalSupply)}
+                  decimals={0}
+                />
+              )}
+           {cakeSupply && (
+                <CardValue fontSize="18px" value={cakeSupply} decimals={0} />
+              )}
+        </Container>
+
+      </Flex>
+
+      <Flex>
+              <img
+                style={{ minWidth: '60px', width: '70px' }}
+                src="/images/metamask-ico.svg"
+                alt="rbs-ico"
+              />
+              <button
+                type="button"
+                style={{ minWidth: '135px' , maxHeight:'50px' }}
+                className="bg-meta  ml-4    rounded-xl sm:mt-2   text-sm  text-white cursor-pointer hover:opacity-75"
+                onClick={addToMetamask}
+              >
+                Add to Metamask
+              </button>
+          </Flex>
+      </Stats>
+
+      {/* <div className="stat-card h-full  text-black text-center   grid  grid-cols-1 gap-4 justify-item-center ">
+      <div className="grid   sm:grid-cols-1  text-lg md:grid-cols-2  lg:grid-cols-3   ">
+        <div className="grid grid-cols-2  gap-2 ">
+          <div className="grid grid-cols-1 md:ml-20 lg:ml-0 text-left">
+            <div>WST APY</div>
+            <div>Total Supply</div>
+            <div>Circulation Supply</div>
+          </div>
+
+          <div className="grid grid-cols-1 md:mr-20 lg:mr-0 text-center ">
+            <div>
+              {!Number.isNaN(2) ? (
+                <Flex justifyContent="center">
+                  <CardValue fontSize="17px" value={2} decimals={0} />
+
+                  <Text bold fontSize="17px" color="primary">
+                    %
+                  </Text>
+                </Flex>
+              ) : (
+                <Text bold fontSize="17px" color="primary">
+                  0
+                </Text>
+              )}
+            </div>
+            <div>
+              {' '}
+              {cakeSupply && (
+                <CardValue
+                  fontSize="17px"
+                  value={getBalanceNumber(totalSupply)}
+                  decimals={0}
+                />
+              )}
+            </div>
+            <div>
+              {cakeSupply && (
+                <CardValue fontSize="17px" value={cakeSupply} decimals={0} />
+              )}
+            </div>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-2  gap-2 ">
+          <div className="grid grid-cols-1 md:ml-20 lg:ml-0 text-left">
+            <div>Total Burned</div>
+            <div>Market Cap</div>
+            <div>WST Per Block</div>
+          </div>
+
+          <div className="grid grid-cols-1 md:mr-20 lg:mr-0 text-center ">
+            <div>
+              <CardValue
+                fontSize="17px"
+                value={getBalanceNumber(burnedBalance)}
+                decimals={0}
+              />
+            </div>
+            <div>
+              {totalSupply && (
+                <CardValue
+                  fontSize="17px"
+                  value={getBalanceNumber(marketCap)}
+                  decimals={0}
+                  prefix="$"
+                />
+              )}
+            </div>
+            <div>
+              <Text bold fontSize="17px" color="primary">
+                {eggPerBlock}
+              </Text>
+            </div>
+          </div>
+        </div>
+        <div className="grid">
+          <div> </div>
+          <Flex flexDirection="column" alignItems="center">
+            <Flex alignItems="center">
+              <img
+                style={{ minWidth: '60px', width: '70px' }}
+                src="/images/metamask-ico.svg"
+                alt="rbs-ico"
+              />
+              <button
+                type="button"
+                style={{ minWidth: '135px' }}
+                className="bg-gray-800  ml-4 py-3   rounded-xl sm:mt-2  lg:mt-1 text-sm  text-white cursor-pointer hover:opacity-75"
+                onClick={addToMetamask}
+              >
+                Add to Metamask
+              </button>
+            </Flex>
+          </Flex>
+          <div> </div>
+        </div>
       </div>
-      <div>
-      <img src="/images/stat2.svg"  alt="rbs-ico"  />
-      </div>
-      <div>
-      <img src="/images/stat3.svg"  alt="rbs-ico"  />
-      </div>
-      <div>
-      <img src="/images/stat4.svg"  alt="rbs-ico"  />
-      </div>
-      <div className="text-gray-300">Total Volume</div>
-      <div className="text-gray-300">Daily Volume</div>
-      <div className="text-gray-300">Active Users</div>
-      <div className="text-gray-300">Trading Fee Saved</div>
-      <div className="text-2xl font-bold text-purple-900">$19.79B</div>
-      <div className="text-2xl font-bold text-purple-900">$166.54M</div>
-      <div className="text-2xl font-bold text-purple-900">141.61K</div>
-      <div className="text-2xl font-bold text-purple-900">$47.49M</div>
-      
-    </div>
+    </div> */}
+    </>
   )
 }
 
-export default Sitestat
+export default Statistics

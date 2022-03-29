@@ -86,6 +86,9 @@ export const useDelegateFarmContract = (address: string) => {
   const delegateFarmAbi = (delegateFarm as unknown) as AbiItem
   return useContract(delegateFarmAbi, address)
 }
+export const useTokenContract = (address) => {
+  return useERC20(address)
+}
 
 export const useLockedSale = (address : string) => {
   const abi = (lockedsale as unknown) as AbiItem

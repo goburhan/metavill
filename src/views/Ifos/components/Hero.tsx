@@ -5,18 +5,18 @@ import Container from 'components/layout/Container'
 import useI18n from 'hooks/useI18n'
 
 const Title = styled(Heading).attrs({ as: 'h1', size: 'xl' })`
-  color: ${({ theme }) => theme.colors.secondary};
+  color:#96906f;
   margin-bottom: 24px;
 `
 
 const Blurb = styled(Text)`
-  color: #ffffff;
+  color: #96906f;
   font-size: 20px;
   font-weight: 600;
 `
 
 const StyledHero = styled.div`
-  background: rgba(107, 96, 168,0.5);
+  background: rgba(255, 255, 255,0.4);
   border-radius:30px;
   padding-bottom: 40px;
   padding-top: 40px;

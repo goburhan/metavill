@@ -1,6 +1,8 @@
 import { createGlobalStyle } from 'styled-components'
 // eslint-disable-next-line import/no-unresolved
 import { PancakeTheme } from '@macist-m/robinia-uikit'
+import bg1 from './bg1.svg'
+import bg2 from './bg2.svg'
 
 declare module 'styled-components' {
   /* eslint-disable @typescript-eslint/no-empty-interface */
@@ -9,10 +11,14 @@ declare module 'styled-components' {
 
 const GlobalStyle = createGlobalStyle`
   * {
-    font-family: 'Kanit', sans-serif;
+font-family: 'Quicksand', sans-serif;;
   }
   body {
-    background: #887CC8;
+    background-image: url(${bg2}),  url(${bg1});
+    background-attachment: scroll , fixed;
+    background-repeat:no-repeat;
+    background-size:auto,cover;
+    background-position: 0% 100% , 0% 0%;
 
     img {
       height: auto;
@@ -42,7 +48,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   .stat-card{
-    background: rgba(212, 211, 255, 0.4);
+    background: #f7f3e4;
     padding: 25px;
     border-radius:30px;
 
@@ -99,8 +105,33 @@ const GlobalStyle = createGlobalStyle`
     margin-right: 6px;
   }
 
+  .calloption{
+    background: #e0d9b8;
+    padding: 55px;
+    border-style : solid;
+    border-color: rgba(200, 200, 200, 0.25);
+    border-width: 2px;
+    border-radius: 30px;
+    backdrop-filter: blur(5px);
+
+    
+  }
+
+  .partnercard{
+    padding: 25px;
+
+    border-style : solid;
+    border-color: #e0d9b8;
+    border-width: 1.5px;
+    border-radius: 30px;
+
+    box-shadow: 1px 1px 20px rgba(0, 0, 0, 0.05);
+    margin-left: 6px;
+    margin-right: 6px;
+  }
+
   .rbs-card {
-    background: rgba(212, 211, 255, 0.4);
+    background: #fdf5d3;
     padding: 25px;
     margin-bottom:30px;
     border-style : solid;

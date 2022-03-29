@@ -46,7 +46,6 @@ const App: React.FC = () => {
 
       <ResetCSS />
       <GlobalStyle />
-      <LeafContainers />
       <Menu>
         <Suspense fallback={<PageLoader />}>
           <Switch>

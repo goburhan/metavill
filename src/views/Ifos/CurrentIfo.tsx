@@ -126,7 +126,7 @@ const Ifo = () => {
 
         <div className="mb-8 flex flex-col md:flex-row justify-between items-center w-full">
           <div className="order-1 w-5/12" />
-          <div className="z-20 flex items-center order-1 bg-green-500 shadow-xl w-14 h-14 rounded-full mb-5 md:mb-0">
+          <div className="z-20 flex items-center order-1 bg-primary shadow-xl w-14 h-14 rounded-full mb-5 md:mb-0">
             <h1 className="mx-auto font-semibold text-xl text-white">3</h1>
           </div>
           <div
