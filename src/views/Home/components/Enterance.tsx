@@ -47,6 +47,9 @@ const Enterance = () => {
     margin-left: auto;
     margin-right: auto;
     text-align:center;
+    @media (max-width:766px) {
+      background:rgba(255,255,255,0.65);
+    }
   `
   const Flex = styled.div`
     display: flex;
@@ -71,7 +74,7 @@ const Enterance = () => {
   return (
     <Flex>
       <Welcome>
-        <img src="/images/welcome.png" alt="welcome" />
+        <img src="/images/welcome.png" alt="welcome" className='ml-auto mr-auto' />
 
         <Text property='25px' color='#376c47' >2.0 (PVC) on BSC Network</Text>
 

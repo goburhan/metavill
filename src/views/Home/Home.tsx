@@ -27,7 +27,7 @@ const Home: React.FC = () => {
         <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-12 gap-8">
           
         
-          <div className="col-span-12 sm:col-span-12 md:col-span-12 lg:col-span-12 mb-40">
+          <div className="col-span-12 sm:col-span-12 md:col-span-12 lg:col-span-12 lg:mb-40">
             <Enterance />
           </div>
         
@@ -51,7 +51,7 @@ const Home: React.FC = () => {
             <Partners />
           </div>
           
-          <div className="col-span-12 sm:col-span-12 md:col-span-12 lg:col-span-12 mt-20">
+          <div className="col-span-12 sm:col-span-12 md:col-span-12 lg:col-span-12 mt-20 mb-20">
             <Sitestat />
           </div>
         

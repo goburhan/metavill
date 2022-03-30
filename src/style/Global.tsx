@@ -119,7 +119,7 @@ font-family: 'Quicksand', sans-serif;;
 
   .partnercard{
     padding: 25px;
-
+    background-color: #fbf8eb;
     border-style : solid;
     border-color: #e0d9b8;
     border-width: 1.5px;

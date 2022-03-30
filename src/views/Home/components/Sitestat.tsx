@@ -101,12 +101,14 @@ const Statistics = () => {
     return Math.max(accumulatedValue, currentValue)
   })
   const Container = styled.div`
+  margin-left:20px;
   `
 
   const Flex = styled.div`
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap:wrap;
     text-align: left;
+    justify-content: space-evenly;
     margin-top: 40px;
     img{
       margin-bottom:30px;
@@ -120,11 +122,12 @@ const Statistics = () => {
     line-height:1.5;
   `
   const Stats = styled.div`
-  justify-content:space-evenly;
+  justify-content:space-around;
   background-color:#f7f3e4;
+  background-size:contain;
   border:solid 1px transparent;
   border-radius:25px;
-  height:150px;
+  min-height:150px;
   display: flex;
   flex-wrap: wrap;
   text-align: left;
@@ -143,6 +146,7 @@ const Statistics = () => {
 
         <Container>
         <CardValue fontSize="18px" value={2} decimals={0} />
+
         {cakeSupply && (
                 <CardValue
                   fontSize="18px"
@@ -150,11 +154,12 @@ const Statistics = () => {
                   decimals={0}
                 />
               )}
+
            {cakeSupply && (
                 <CardValue fontSize="18px" value={cakeSupply} decimals={0} />
               )}
-        </Container>
 
+        </Container>
       </Flex>
       <Flex>
         <Container>
@@ -196,104 +201,7 @@ const Statistics = () => {
           </Flex>
       </Stats>
 
-      {/* <div className="stat-card h-full  text-black text-center   grid  grid-cols-1 gap-4 justify-item-center ">
-      <div className="grid   sm:grid-cols-1  text-lg md:grid-cols-2  lg:grid-cols-3   ">
-        <div className="grid grid-cols-2  gap-2 ">
-          <div className="grid grid-cols-1 md:ml-20 lg:ml-0 text-left">
-            <div>WST APY</div>
-            <div>Total Supply</div>
-            <div>Circulation Supply</div>
-          </div>
-
-          <div className="grid grid-cols-1 md:mr-20 lg:mr-0 text-center ">
-            <div>
-              {!Number.isNaN(2) ? (
-                <Flex justifyContent="center">
-                  <CardValue fontSize="17px" value={2} decimals={0} />
-
-                  <Text bold fontSize="17px" color="primary">
-                    %
-                  </Text>
-                </Flex>
-              ) : (
-                <Text bold fontSize="17px" color="primary">
-                  0
-                </Text>
-              )}
-            </div>
-            <div>
-              {' '}
-              {cakeSupply && (
-                <CardValue
-                  fontSize="17px"
-                  value={getBalanceNumber(totalSupply)}
-                  decimals={0}
-                />
-              )}
-            </div>
-            <div>
-              {cakeSupply && (
-                <CardValue fontSize="17px" value={cakeSupply} decimals={0} />
-              )}
-            </div>
-          </div>
-        </div>
-
-        <div className="grid grid-cols-2  gap-2 ">
-          <div className="grid grid-cols-1 md:ml-20 lg:ml-0 text-left">
-            <div>Total Burned</div>
-            <div>Market Cap</div>
-            <div>WST Per Block</div>
-          </div>
-
-          <div className="grid grid-cols-1 md:mr-20 lg:mr-0 text-center ">
-            <div>
-              <CardValue
-                fontSize="17px"
-                value={getBalanceNumber(burnedBalance)}
-                decimals={0}
-              />
-            </div>
-            <div>
-              {totalSupply && (
-                <CardValue
-                  fontSize="17px"
-                  value={getBalanceNumber(marketCap)}
-                  decimals={0}
-                  prefix="$"
-                />
-              )}
-            </div>
-            <div>
-              <Text bold fontSize="17px" color="primary">
-                {eggPerBlock}
-              </Text>
-            </div>
-          </div>
-        </div>
-        <div className="grid">
-          <div> </div>
-          <Flex flexDirection="column" alignItems="center">
-            <Flex alignItems="center">
-              <img
-                style={{ minWidth: '60px', width: '70px' }}
-                src="/images/metamask-ico.svg"
-                alt="rbs-ico"
-              />
-              <button
-                type="button"
-                style={{ minWidth: '135px' }}
-                className="bg-gray-800  ml-4 py-3   rounded-xl sm:mt-2  lg:mt-1 text-sm  text-white cursor-pointer hover:opacity-75"
-                onClick={addToMetamask}
-              >
-                Add to Metamask
-              </button>
-            </Flex>
-          </Flex>
-          <div> </div>
-        </div>
-      </div>
-    </div> */}
+     
     </>
   )
 }
