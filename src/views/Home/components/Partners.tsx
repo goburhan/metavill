@@ -13,30 +13,12 @@ const Text = styled.text`
   
   }
 `
-const Flex = styled.div`
-display:flex;
-  text-align:center;
-  
-margin-right:auto;
-  }
-`
-const PartnerCard = styled.div`
-  background-color: #fbf8eb;
-  border-radius: 25px;
-  border: 1px solid #e0d9b8;
-  background-size: cover;
-  width: 260px;
-  height: 160px;
-  padding: 40px;
-  
-  img {
-    max-width: 350px;
-  }
-`
+
 
 const PartnerSection = styled.div`
-  padding: 0px 10% 0px 10%;
-  margin-left:20px;
+display:flex;
+flex-wrap:wrap;
+justify-content:space-evenly;
 `
 const Partner = styled.div`
   text-align: center;
@@ -118,24 +100,24 @@ export default function Partners() {
       <br />
       <br />
       <PartnerSection>
-        <Slider {...sliderSettings}>
         
           
-          <div className='partnercard'>
-          
-            <img src="/images/partner1.png" width='350' alt='1' />
-          </div>
-          <div className='partnercard'>
-            <img src="/images/partner2.png"  width='350' alt='1' />
-          </div>
-          <div className='partnercard'>
-            <img src="/images/partner3.png"  width='350' alt='1' />
-          </div>
-          <div className='partnercard'>
-            <img src="/images/partner4.png"   width='350' alt='1' />
+          <div className='partnercard sm:mb-2'>
+            <img src="/images/partner1.png" width='230' alt='1'  />
           </div>
 
-        </Slider>
+          <div className='partnercard sm:mb-2'>
+            <img src="/images/partner2.png"  width='230' alt='1' />
+          </div>
+
+          <div className='partnercard sm:mb-2'>
+            <img src="/images/partner3.png"  width='230' alt='1' />
+          </div>
+
+          <div className='partnercard sm:mb-2'>
+            <img src="/images/partner4.png"   width='230' alt='1' />
+          </div>
+
       </PartnerSection>
     </Partner>
   )

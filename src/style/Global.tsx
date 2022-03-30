@@ -118,16 +118,15 @@ font-family: 'Quicksand', sans-serif;;
   }
 
   .partnercard{
-    padding: 25px;
+    padding: 15px;
     background-color: #fbf8eb;
     border-style : solid;
     border-color: #e0d9b8;
     border-width: 1.5px;
     border-radius: 30px;
-
     box-shadow: 1px 1px 20px rgba(0, 0, 0, 0.05);
-    margin-left: 6px;
-    margin-right: 6px;
+    
+    
   }
 
   .rbs-card {
