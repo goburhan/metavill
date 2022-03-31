@@ -30,34 +30,34 @@ const config: MenuEntry[] = [
     icon: 'NftIcon',
     href:'/calloption'
   },
-  {
-    label: 'IFO',
-    icon: 'GooseIcon',
-    href: '/ifo',
-  },
+  // {
+  //   label: 'IFO',
+  //   icon: 'GooseIcon',
+  //   href: '/ifo',
+  // },
   // {
   //   label: 'Bridge',
   //   icon: 'PoolIcon',
   //    href:'https://bridge.robiniaswap.com/'
   // },
-  {
-    label: "Partner's Defi ",
-    icon: 'TicketIcon',
-    items: [
-      {
-        label: 'RobiniaSwap',
-        href: 'https://robiniaswap.com/',
-      },
-      {
-        label: 'Yanabu Farm',
-        href: 'https://yanabu.com/',
-      },
-      {
-        label: 'Honey Farm',
-        href: 'https://honeyfarm.finance/',
-      },
-    ],
-    },
+  // {
+  //   label: "Partner's Defi ",
+  //   icon: 'TicketIcon',
+  //   items: [
+  //     {
+  //       label: 'RobiniaSwap',
+  //       href: 'https://robiniaswap.com/',
+  //     },
+  //     {
+  //       label: 'Yanabu Farm',
+  //       href: 'https://yanabu.com/',
+  //     },
+  //     {
+  //       label: 'Honey Farm',
+  //       href: 'https://honeyfarm.finance/',
+  //     },
+  //   ],
+  //   },
     
 
   {

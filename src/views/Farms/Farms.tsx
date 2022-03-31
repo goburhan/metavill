@@ -129,24 +129,7 @@ const Farms: React.FC<FarmsProps> = (farmsProps) => {
           </Route>
         </FlexLayout>
       </div>
-      <div className="mb-10" />
-      <div className="rbs-card mb-10">
-        <div className="text-center text-calloption text-3xl leading-10 mb-4">
-          Launch Your Project on Wisteria Now
-        </div>
-        <div className="p-1 flex flex-col md:flex-row items-center justify-around">
-          <img src="/images/launch-project.svg" alt="project" width="400px" />
-          <div className="flex flex-col">
-            <div className="p-5 leading-7 text-lg text-gray-500">
-              WisteriaSwap supports multiple blockchains through a cross-chain bridge.
-              If you would like to grow with WisteriaSwap, please feel free to apply for our partnership program.
-            </div>
-            <div className="mx-5 my-2 py-4 rounded-full bg-calloption w-60 text-center text-white cursor-pointer shadow-lg">
-              Apply to Launch
-            </div>
-          </div>
-        </div>
-      </div>
+     
       <div className="mb-16" />
     </Page>
   )
