@@ -90,5 +90,9 @@ export default {
   delegate : {
     56 : '0xaf0400156c48672c5eec011114209fe05e3e7c28',
     97 : '0x162F9053eF2d2DCE5032d530e0863AE184B9056d'
+  },
+  cakeVault : {
+    56 : '0x0a4ec7dec4c17a74c7947b09c127c2f6a5d3828c',
+    97 : '0x24d4cA45A8F4aDDe5a62cC6c31011B3a56DD4cD3'
   }
 }

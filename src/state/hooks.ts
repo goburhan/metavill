@@ -5,7 +5,7 @@ import useRefresh from 'hooks/useRefresh'
 import { useLockedSale } from 'hooks/useContract'
 import { getBusdAddress, getLockedSaleAddress } from 'utils/addressHelpers'
 import Web3 from 'web3'
-import { fetchFarmsPublicDataAsync, fetchPoolsPublicDataAsync, fetchPoolsUserDataAsync } from './actions'
+import { fetchFarmsPublicDataAsync, fetchPoolsPublicDataAsync, fetchPoolsUserDataAsync,fetchCakeVaultFees,fetchCakeVaultPublicData,fetchCakeVaultUserData } from './actions'
 import { State, Farm, Pool } from './types'
 import { QuoteToken } from '../config/constants/types'
 
@@ -15,6 +15,7 @@ export const useFetchPublicData = () => {
   const dispatch = useDispatch()
   const { slowRefresh } = useRefresh()
   useEffect(() => {
+    dispatch(fetchCakeVaultPublicData)
     dispatch(fetchFarmsPublicDataAsync())
     dispatch(fetchPoolsPublicDataAsync())
   }, [dispatch, slowRefresh])
@@ -146,6 +147,94 @@ export const usePoolsTotalValue = (): BigNumber => {
     }
     // console.log(`Pool tvl : ${value}`)
     return new BigNumber(value);
+}
+
+export const useFetchCakeVault = (account) => {
+  // const { account } = useWallet()
+  const { fastRefresh } = useRefresh()
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(fetchCakeVaultPublicData())
+  }, [dispatch, fastRefresh])
+
+   useEffect(() => {
+     dispatch(fetchCakeVaultUserData({ account }))
+   }, [dispatch, fastRefresh, account])
+
+  useEffect(() => {
+    dispatch(fetchCakeVaultFees())
+  }, [dispatch])
+}
+
+export const useCakeVault = () => {
+  const {
+    totalShares: totalSharesAsString,
+    pricePerFullShare: pricePerFullShareAsString,
+    totalRobiniaInVault: totalRobiniaInVaultAsString,
+    estimatedRobiniaBountyReward: estimatedRobiniaBountyRewardAsString,
+    totalPendingRobiniaHarvest: totalPendingRobiniaHarvestAsString,
+    fees: { performanceFee, callFee, withdrawalFee, withdrawalFeePeriod },
+    tokenTaxRate,
+
+    userData: {
+      isLoading,
+      userShares: userSharesAsString,
+      robiniaAtLastUserAction: robiniaAtLastUserActionAsString,
+      lastDepositedTime,
+      lastUserActionTime,
+    },
+  } = useSelector((state: State) => state.farms.cakeVault)
+
+  const estimatedRobiniaBountyReward = useMemo(() => {
+    return new BigNumber(estimatedRobiniaBountyRewardAsString)
+  }, [estimatedRobiniaBountyRewardAsString])
+
+  const totalPendingRobiniaHarvest = useMemo(() => {
+    return new BigNumber(totalPendingRobiniaHarvestAsString)
+  }, [totalPendingRobiniaHarvestAsString])
+
+  const totalShares = useMemo(() => {
+    return new BigNumber(totalSharesAsString)
+  }, [totalSharesAsString])
+
+  const pricePerFullShare = useMemo(() => {
+    return new BigNumber(pricePerFullShareAsString)
+  }, [pricePerFullShareAsString])
+
+  const totalRobiniaInVault = useMemo(() => {
+    return new BigNumber(totalRobiniaInVaultAsString)
+  }, [totalRobiniaInVaultAsString])
+
+  const userShares = useMemo(() => {
+    return new BigNumber(userSharesAsString)
+  }, [userSharesAsString])
+
+  const robiniaAtLastUserAction = useMemo(() => {
+    return new BigNumber(robiniaAtLastUserActionAsString)
+  }, [robiniaAtLastUserActionAsString])
+
+  return {
+    totalShares,
+    pricePerFullShare,
+    totalRobiniaInVault,
+    estimatedRobiniaBountyReward,
+    totalPendingRobiniaHarvest,
+    tokenTaxRate,
+    fees: {
+      performanceFee,
+      callFee,
+      withdrawalFee,
+      withdrawalFeePeriod,
+    },
+    userData: {
+      isLoading,
+      userShares,
+      robiniaAtLastUserAction,
+      lastDepositedTime,
+      lastUserActionTime,
+    },
+  }
 }
 
 export const useTotalValue = (): BigNumber => {

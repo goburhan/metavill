@@ -211,7 +211,7 @@ const CallOption: React.FC<FarmsProps> = (farmsProps) => {
   return (
     <Page>
       <Flex className="" justifyContent="center" alignItems="center" marginBottom={32}>
-        <div className="   max-h-fit calloption">
+        <div className="max-h-fit calloption">
           <Flex justifyContent="space-between" marginBottom={3}>
             <Flex
               className="coborder text-calloption "
@@ -244,7 +244,7 @@ const CallOption: React.FC<FarmsProps> = (farmsProps) => {
           </Flex>
 
           <div className="grid grid-cols-1  text-calloption   mb-6 ">
-            <div className="mb-4 ">Call Option(1,1)</div>
+            <div className="mb-4 ">Mint(1,1)</div>
             <div className="grid grid-cols-5 text-center justify-items-start cog">
               <div style={{position:"relative",paddingRight:"40px"}} className="lg:ml-12 ">
                 <img src="/images/w-token.svg" alt="wst" style={{ maxWidth: 45 }} />

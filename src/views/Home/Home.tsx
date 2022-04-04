@@ -47,9 +47,9 @@ const Home: React.FC = () => {
           <div className="col-span-12 sm:col-span-12 md:col-span-12 lg:col-span-12 mt-20">
             <Features />
           </div>
-          <div className="col-span-12 sm:col-span-12 md:col-span-12 lg:col-span-12 mt-20">
+          {/* <div className="col-span-12 sm:col-span-12 md:col-span-12 lg:col-span-12 mt-20">
             <Partners />
-          </div>
+          </div> */}
           
           <div className="col-span-12 sm:col-span-12 md:col-span-12 lg:col-span-12 mt-20 mb-20">
             <Sitestat />

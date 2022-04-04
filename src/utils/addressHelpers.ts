@@ -15,6 +15,11 @@ export const getMulticallAddress = () => {
 export const getWbnbAddress = () => {
   return addresses.wbnb[chainId]
 }
+
+export const getCakeVaultAddress = () => {
+  return addresses.cakeVault[chainId]
+}
+
 export const getLotteryAddress = () => {
   return addresses.lottery[chainId]
 }

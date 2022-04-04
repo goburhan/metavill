@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-d
 import { useWallet } from '@binance-chain/bsc-use-wallet'
 import { ResetCSS } from '@macist-m/robinia-uikit'
 import BigNumber from 'bignumber.js'
+import Dashboard from 'views/Dashboard'
 import { useFetchPublicData } from 'state/hooks'
 import LeafContainers from 'components/layout/LeafContainers'
 import CallOption from 'views/CallOption/CallOption'
@@ -84,9 +85,15 @@ const App: React.FC = () => {
             {/*  <Redirect to="/pools" /> */}
             {/* </Route> */}
             {/* 404 */}
+            <Route path="/Dashboard">
+              <Dashboard />
+            </Route>
             <Route path="/CallOption">
               <CallOption />
             </Route>
+
+           
+            
             <Route component={NotFound} />
           </Switch>
         </Suspense>

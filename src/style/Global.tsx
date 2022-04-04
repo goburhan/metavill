@@ -18,7 +18,7 @@ font-family: 'Quicksand', sans-serif;;
     background-attachment: scroll , fixed;
     background-repeat:no-repeat;
     background-size:auto,cover;
-    background-position: 0% 100% , 0% 0%;
+    background-position: 0% 280% , 0% 0%;
 
     img {
       height: auto;
@@ -36,6 +36,21 @@ font-family: 'Quicksand', sans-serif;;
     borderImageWidth:"110px";
     borderImageOutset:"45px";
     borderImageSlice:"20%";
+  }
+
+  .cog{
+    background: rgba(255, 255, 255, 0.1);
+    padding: 10px;
+    margin-bottom:30px;
+    border-radius: 15px;
+    backdrop-filter: blur(5px);
+    box-shadow: 1px 1px 20px rgba(0, 0, 0, 0.05);
+    ${({ theme }) => theme.mediaQueries.sm} {
+      margin: 0 auto;
+    }
+    ${({ theme }) => theme.mediaQueries.lg} {
+      margin: 0 auto;
+    }
   }
 
   .pbg{
@@ -65,6 +80,49 @@ font-family: 'Quicksand', sans-serif;;
     box-shadow: 1px 1px 20px rgba(0, 0, 0, 0.05);
 
   }
+  .coborder{
+    border:solid;
+    border-color: rgba(255, 255, 255, 0.25);
+    border-width: 1px;
+    border-radius: 15px;
+}
+.cborder{
+  border:solid;
+  border-color: rgba(255, 255, 255, 0.2);
+  border-width: 2px;
+  border-radius: 10px;
+}
+.claim-card{
+  background: rgba(255, 255, 255, 0.1);
+  padding: 10px;
+  border-style : solid;
+  border-color: rgba(200, 200, 200, 0.25);
+  border-width: 2px;
+  border-radius: 30px;
+  backdrop-filter: blur(5px);
+  box-shadow: 1px 1px 20px rgba(0, 0, 0, 0.05);
+  ${({ theme }) => theme.mediaQueries.sm} {
+    margin: 0 auto;
+  }
+  ${({ theme }) => theme.mediaQueries.lg} {
+    margin: 0 auto;
+}
+}
+
+.noclaim-card{
+  background: rgba(255, 255, 255, 0.25);
+  padding:12px;
+  border-radius: 30px;
+  box-shadow: 1px 1px 20px rgba(0, 0, 0, 0.05);
+  margin-left: 6px;
+  margin-right: 6px;
+  ${({ theme }) => theme.mediaQueries.sm} {
+    margin: 0 auto;
+  }
+  ${({ theme }) => theme.mediaQueries.lg} {
+    margin: 0 auto;
+}
+}
   .socialbg {
     background: rgba(235, 226, 255, 0.39);
     height: 35px;
