@@ -94,7 +94,7 @@ const Enterance = () => {
               color='#fff'
             />
           ) : (
-            <CardValue value={0} prefix="$" decimals={2} fontSize="18px" />
+            <CardValue value={0} prefix="$" decimals={2} fontSize="18px"  color='#fff'/>
           )}
         </Values>
         </Container>
@@ -111,7 +111,7 @@ const Enterance = () => {
               color='#fff'
             />
           ) : (
-            <CardValue value={0} prefix="$" decimals={2} fontSize="18px" />
+            <CardValue value={0} prefix="$" decimals={2} fontSize="18px" color='#fff' />
           )}
         </Values>
         </Container>

@@ -215,16 +215,16 @@ const CallOption: React.FC<FarmsProps> = (farmsProps) => {
           <Flex justifyContent="space-between" marginBottom={3}>
             <Flex
               className="coborder text-calloption "
-              style={{ maxWidth: 240 }}
+              style={{ maxWidth: 300 }}
               alignItems="center"
               padding={0}
             >
-              <img src="/images/w-token.svg" alt="wst" style={{ minWidth: 60 }} />
+              <img src="/images/w-token.svg" alt="wst" style={{ minWidth: 60, maxWidth: 60  }} />
 
               <div className="text-left mt-2">
                 Call Option Amount
                 <Text color='#96906f' fontSize='18px' bold>
-                {contbalance ? Web3.utils.fromWei(contbalance) : 0} WST
+                {contbalance ? Web3.utils.fromWei(contbalance,"ether") : 0} WST
                 </Text>
               </div>
             </Flex>
