@@ -26,7 +26,7 @@ const config: MenuEntry[] = [
     href:'/farms'
   },
   {
-    label: 'Call Option(1,1)',
+    label: 'Bond(1,1)',
     icon: 'NftIcon',
     href:'/calloption'
   },

@@ -219,12 +219,12 @@ const CallOption: React.FC<FarmsProps> = (farmsProps) => {
               alignItems="center"
               padding={0}
             >
-              <img src="/images/w-token.svg" alt="wst" style={{ minWidth: 60, maxWidth: 60  }} />
+              <img src="/images/matv.png" alt="wst" style={{ minWidth: 60, maxWidth: 60  }} />
 
-              <div className="text-left mt-2">
-                Call Option Amount
+              <div className="text-left mt-2 mr-2">
+              Bond  Amount
                 <Text color='#96906f' fontSize='18px' bold>
-                {contbalance ? Web3.utils.fromWei(contbalance,"ether") : 0} WST
+                {contbalance ? Web3.utils.fromWei(contbalance,"ether") : 0} MTV
                 </Text>
               </div>
             </Flex>
@@ -236,7 +236,7 @@ const CallOption: React.FC<FarmsProps> = (farmsProps) => {
             flexDirection="column"
             justifyContent="center"
             >
-              Call Option Price
+              Bond Price
               <div style={{lineHeight:1}} className="text-calloption  ">
                 <Text color='#96906f' fontSize='18px' bold>${new BigNumber(discountedPrice).toFixed(4)}{' '}</Text>
               </div>
@@ -247,14 +247,14 @@ const CallOption: React.FC<FarmsProps> = (farmsProps) => {
             <div className="mb-4 ">Mint(1,1)</div>
             <div className="grid grid-cols-5 text-center justify-items-start cog">
               <div style={{position:"relative",paddingRight:"40px"}} className="lg:ml-12 ">
-                <img src="/images/w-token.svg" alt="wst" style={{ maxWidth: 45 }} />
+                <img src="/images/matv.png" alt="wst" style={{ maxWidth: 45 }} />
                 <img src="/images/farms/wbnb.png" alt="bnb" style={{ maxWidth: 30 ,position:"absolute",top:"18px",right:"16px"}} />
               </div>
 
               <div className="mt-2">
                 MINT
                 <Divider />
-               WST-BNB LP
+                MTV-BNB LP
               </div>
               <div className="mt-2">
                 PRICE
@@ -283,7 +283,7 @@ const CallOption: React.FC<FarmsProps> = (farmsProps) => {
                 ? getBalanceNumber(busdBalanc.times(lpPrice).div(discountedPrice), 18).toFixed(3)
                 : 0
             }
-            symbol="WST"
+            symbol="MTV"
           />
           <div
             style={{
@@ -300,7 +300,7 @@ const CallOption: React.FC<FarmsProps> = (farmsProps) => {
                 type="submit"
                 onClick={async () => buyWithBUSD(Web3.utils.toWei(inputAmount, 'ether'))}
               >
-                Call option WST
+                Bond MTV
               </Button>
             ) : (
               <Button
@@ -320,10 +320,10 @@ const CallOption: React.FC<FarmsProps> = (farmsProps) => {
               <div>Minimum Purchase</div>
             </div>
             <div className="text-right grid grid-cols-1  text-calloption">
-              <div>{getBalanceNumber(busdBalanc, 18).toFixed(3)} WST-BNB LP</div>
-              <div>{contbalance ? Web3.utils.fromWei(contbalance) : 0} WST</div>
+              <div>{getBalanceNumber(busdBalanc, 18).toFixed(3)} MTV-BNB LP</div>
+              <div>{contbalance ? Web3.utils.fromWei(contbalance) : 0} MTV</div>
               <div>$ {new BigNumber(cakePriceBusd).toFixed(3)} </div>
-              <div>{minpurchase ? Web3.utils.fromWei(minpurchase) : 0} WST</div>
+              <div>{minpurchase ? Web3.utils.fromWei(minpurchase) : 0} MTV</div>
             </div>
           </div>
           <br />

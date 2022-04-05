@@ -169,16 +169,22 @@ const Statistics = () => {
         </Container>
 
         <Container  >
-        <CardValue fontSize="18px" value={2} decimals={0}  />
-        {cakeSupply && (
+        <CardValue
+                fontSize="17px"
+                value={getBalanceNumber(burnedBalance)}
+                decimals={0}
+              />
+              
+              {totalSupply && (
                 <CardValue
-                  fontSize="18px"
-                  value={getBalanceNumber(totalSupply)}
+                  fontSize="17px"
+                  value={getBalanceNumber(marketCap)}
                   decimals={0}
+                  prefix='$'
                 />
               )}
            {cakeSupply && (
-                <CardValue fontSize="18px" value={cakeSupply} decimals={0} />
+                <CardValue fontSize="18px" value={eggPerBlock} decimals={0} />
               )}
         </Container>
 

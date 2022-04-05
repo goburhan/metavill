@@ -82,8 +82,10 @@ font-family: 'Quicksand', sans-serif;;
   }
   .coborder{
     border:solid;
-    border-color: rgba(255, 255, 255, 0.25);
-    border-width: 1px;
+    border-color: rgba(255, 255, 255, 0.45);
+    border-width: 2px;
+    box-shadow: 1px 1px 5px rgba(148, 140, 105, 1);
+
     border-radius: 15px;
 }
 .cborder{
